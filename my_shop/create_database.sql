@@ -16,7 +16,6 @@ ALTER TABLE users
 ALTER TABLE users
     MODIFY id bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
-
 CREATE TABLE items (
     id bigint UNSIGNED NOT NULL,
     code varchar(255) NOT NULL,
@@ -36,8 +35,8 @@ ALTER TABLE items
 
 CREATE TABLE user_items (
     id bigint UNSIGNED NOT NULL,
-    user_id bigint NOT NULL,
-    item_id bigint NOT NULL,
+    user_id bigint UNSIGNED NOT NULL,
+    item_id bigint UNSIGNED NOT NULL,
     price int NOT NULL,
     amount int NOT NULL,
     total_price int NOT NULL,
@@ -47,5 +46,9 @@ CREATE TABLE user_items (
 
 ALTER TABLE user_items ADD PRIMARY KEY (id);
 
-ALTER TABLE user_items 
-    MODIFY id bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE user_items
+  MODIFY id bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE user_items
+  ADD CONSTRAINT user_items_item_id_fkey FOREIGN KEY (item_id) REFERENCES items (id) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT user_items_user_id_fkey FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
