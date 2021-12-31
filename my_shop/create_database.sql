@@ -1,35 +1,35 @@
+DROP TABLE IF EXISTS user_items;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS items;
+
 CREATE TABLE users (
     id bigint UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name varchar(255) NOT NULL,
     email varchar(255) UNIQUE NOT NULL,
-    email_verified_at timestamp NULL DEFAULT NULL,
     password varchar(255) NOT NULL,
-    remember_token varchar(100) DEFAULT NULL,
-    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at timestamp NULL
+    gender varchar(16) DEFAULT NULL,
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at datetime NULL
 );
 
-DROP TABLE IF EXISTS items;
 CREATE TABLE items (
     id bigint UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     code varchar(255) UNIQUE NOT NULL,
     name varchar(255) NOT NULL,
     price int NOT NULL,
     stock int NOT NULL,
-    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at timestamp NULL
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at datetime NULL
 );
 
-DROP TABLE IF EXISTS user_items;
 CREATE TABLE user_items (
     id bigint UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id bigint UNSIGNED NOT NULL,
     item_id bigint UNSIGNED NOT NULL,
     amount int NOT NULL,
     total_price int NOT NULL,
-    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at timestamp NULL
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at datetime NULL
 );
 
 ALTER TABLE user_items
